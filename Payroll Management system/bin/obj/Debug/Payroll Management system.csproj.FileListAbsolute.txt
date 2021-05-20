@@ -1,0 +1,20 @@
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Attendance.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Dashboard.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Deduction.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.DeleteEmployee.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Employee_Details.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.GeneratePayroll.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Login.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.ManageEmployee.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.PayrollMain.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Properties.Resources.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Secondpage.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.Sign_Up.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll_Management_system.UpdateEmployee.resources
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll Management system.csproj.GenerateResource.cache
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll Management system.csproj.CoreCompileInputs.cache
+E:\source\repos\Payroll Management system\Payroll Management system\bin\Debug\Payroll Management system.exe.config
+E:\source\repos\Payroll Management system\Payroll Management system\bin\Debug\Payroll Management system.exe
+E:\source\repos\Payroll Management system\Payroll Management system\bin\Debug\Payroll Management system.pdb
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll Management system.exe
+E:\source\repos\Payroll Management system\Payroll Management system\obj\Debug\Payroll Management system.pdb
