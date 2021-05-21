@@ -72,11 +72,14 @@ namespace Payroll_Management_system
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(@"Data Source=ZAINUDDIN\SQLEXPRESS;Initial Catalog='Payroll Database';Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             double CA, MA, HR, GrossPay, Inc_Tax;
-            int PAY = Convert.ToInt32(basicpay.Text);
+            int PAY = 0;
+
+            PAY = Convert.ToInt32(basicpay.Text);
             if (PAY >= 160000)
             {
                 CA = (int)(PAY * 0.40);
@@ -195,6 +198,7 @@ namespace Payroll_Management_system
                 Total.ResetText();
                 DeductionAmount.ResetText();
                 DeductionReason.ResetText();
+                Total.ResetText();
             }
             catch(Exception)
             {
@@ -202,27 +206,51 @@ namespace Payroll_Management_system
             damount = 0;
             DeductionA = 0;
             DeductionR = "";
-            con.Open();
             try
             {
-                string query = "Select * From EmployeeDetail where EmployeeID='" + Employeeid.Text + "'";
+                string query = "Select * From Employee where Eid='" + Employeeid.Text + "'";
                 SqlCommand data = new SqlCommand(query, con);
+                con.Open();
                 SqlDataReader read = data.ExecuteReader();
                 while (read.Read())
                 {
-                    name.Text = read.GetValue(0).ToString();
-                    basicpay.Text = read.GetValue(6).ToString();
-                    if (read.GetValue(8) == null)
+                    name.Text = read.GetValue(1).ToString();
+                }
+                con.Close();
+                data.CommandText = "Select * From Salary where Eid = '" + Employeeid.Text + "'";
+                con.Open();
+                //read = data.ExecuteReader();
+                //while(read.Read())
+                //{
+                //    basicpay.Text = read.GetValue(3).ToString();
+                //}
+                SqlDataAdapter adapt = new SqlDataAdapter(data.CommandText, con);
+
+                DataTable dta = new DataTable();
+                adapt.Fill(dta);
+                if (dta.Rows.Count > 0)
+                {
+
+                    basicpay.Text = dta.Rows[0]["sBasicSalary"].ToString();
+
+                }
+                con.Close();
+                data.CommandText = "Select * From Deduction where Eid = '" + Employeeid.Text + "'";
+                con.Open();
+                read = data.ExecuteReader();
+                while (read.Read())
+                {
+                    if (read.GetValue(3) == null)
                     {
                         DeductionA += 0;
                     }
                     else
                     {
-                        DeductionA += Convert.ToInt32(read.GetValue(8));
+                        DeductionA += Convert.ToInt32(read.GetValue(3));
                     }
-                    if (read.GetValue(9) != null)
+                    if (read.GetValue(2) != null)
                     {
-                        DeductionR += read.GetValue(9).ToString()+":"+ read.GetValue(8).ToString()+" + ";
+                        DeductionR += read.GetValue(2).ToString() + ":" + read.GetValue(3).ToString()+ "\n";
                     }
                     else
                     {
@@ -231,12 +259,12 @@ namespace Payroll_Management_system
                 }
                 con.Close();
             }
-            catch(Exception)
-            {
-                //MessageBox.Show(c.Message);
+            catch(Exception c)
+            { 
+                MessageBox.Show(c.Message);
             }
-            con.Close();
-            string firstquery = "Select AbsentPresent,ArriveTime From Attendance where EmployeeID='" + Employeeid.Text + "' AND AbsentPresent='" + "Absent" + "'";
+            con.Open();
+            string firstquery = "Select aMarkAttendance,aArriveTime From Attendance where Eid='" + Employeeid.Text + "' AND aMarkAttendance='" + "Absent" + "'";
             SqlDataAdapter da = new SqlDataAdapter(firstquery, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -264,16 +292,18 @@ namespace Payroll_Management_system
                 DeductionA += Convert.ToInt32(basicpay.Text) / 2;
                 DeductionR += dt.Rows.Count.ToString() + "Days Absent.";
             }
-            else if (dt.Rows.Count<3)
+            else if (dt.Rows.Count < 3)
             {
                 DeductionA += 0;
-                DeductionR += "";
+                //DeductionR += "";
             }
+            if (dt.Rows.Count!=0)
+            {
+                DeductionAmount.Text = DeductionA.ToString();
+                DeductionReason.Text = DeductionR.ToString() + damount.ToString() + ".";
+            }
+            Total.Text = (NETSalary - DeductionA).ToString();
             con.Close();
-            //if (con.State != ConnectionState.Closed)
-            //{
-            //    con.Close();
-            //}
         }
 
         private void basicsalary_TextChanged(object sender, EventArgs e)
@@ -333,13 +363,23 @@ namespace Payroll_Management_system
 
         private void adddetails_Click(object sender, EventArgs e)
         {
-            DeductionAmount.Text = DeductionA.ToString();
-            DeductionReason.Text = DeductionR.ToString() +":"+ damount.ToString() +".";
+            //DeductionAmount.Text = DeductionA.ToString();
+            //DeductionReason.Text = DeductionR.ToString() +":"+ damount.ToString() +".";
+        }
+
+        private void DeductionReason_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Total.Text = (NETSalary - DeductionA).ToString();
+            
         }
     }
 }

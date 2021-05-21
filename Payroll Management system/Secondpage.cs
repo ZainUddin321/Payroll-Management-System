@@ -16,7 +16,8 @@ namespace Payroll_Management_system
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        //SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(@"Data Source=ZAINUDDIN\SQLEXPRESS;Initial Catalog='Payroll Database';Integrated Security=True");
         private void Secondpage_Load(object sender, EventArgs e)
         {
 
@@ -44,6 +45,10 @@ namespace Payroll_Management_system
             {
                 gender = "Female";
             }
+            else
+            {
+                MessageBox.Show("Please select your gender.");
+            }
             try
             {
                 string filename = System.IO.Path.GetFileName(openFileDialog1.FileName);
@@ -53,11 +58,7 @@ namespace Payroll_Management_system
                 }
                 else
                 {
-                    if (employeeid.Text == "")
-                    {
-                        MessageBox.Show("Please enter Employee Id.", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (name.Text == "")
+                    if (name.Text == "")
                     {
                         MessageBox.Show("Please enter Name.", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -65,9 +66,14 @@ namespace Payroll_Management_system
                     {
                         MessageBox.Show("Please enter Father Name.", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else if (phone.Text == "")
+                    //else if (phone.Text == "")
+                    else if (string.IsNullOrEmpty(phone.Text))
                     {
                         MessageBox.Show("Please enter Phone Number.", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (designation.Text == "")
+                    {
+                        MessageBox.Show("Please enter your Designation.", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else if (department.Text == "")
                     {
@@ -80,10 +86,25 @@ namespace Payroll_Management_system
                     else
                     {
                         con.Open();
-                        string query = "Insert Into EmployeeDetail (Name,Fathername,EmployeeID,Gender,Phone,Department,Basicsalary,Image) Values('" + name.Text + "','" + fathername.Text + "','" + employeeid.Text + "','" + gender + "','" + phone.Text + "','" + department.Text + "','" + basicsalary.Text + "','\\Image\\" + filename + "')";
+                        string query = "Insert Into Employee (eName,eFname,eGender,eDesignation,ePhone,eDepartment,eImage) Values('" + name.Text + "','" + fathername.Text + "','" + gender + "','" + designation.Text + "','" + Convert.ToUInt64(phone.Text) + "','" + department.Text + "','\\Image\\" + filename + "')";
                         SqlCommand cmd = new SqlCommand(query, con);
                         string path = Application.StartupPath.Substring(0, (Application.StartupPath.Length - 10));
                         System.IO.File.Copy(openFileDialog1.FileName, path + "\\Image\\" + filename);
+                        cmd.ExecuteNonQuery();
+                        string getEID = "select max(Eid) as Eid from Employee where eName='" + name.Text + "'";
+                        SqlDataAdapter adapt = new SqlDataAdapter(getEID, con);
+                        DataTable dtEID = new DataTable();
+                        adapt.Fill(dtEID);
+                        int EmployeeId = 0;
+                        EmployeeId = Convert.ToInt32(dtEID.Rows[0]["Eid"]);
+                        //cmd.CommandText = "select Eid from Employee where eName='" + name.Text + "'";
+                        //SqlDataReader data = cmd.ExecuteReader();
+                        //int EmployeeId=0;
+                        //while (data.Read())
+                        //{
+                        //    EmployeeId = Convert.ToInt32(data.GetValue(0));
+                        //}
+                        cmd.CommandText="Insert Into Salary(Eid,sBasicSalary) Values('"+EmployeeId+"','" + basicsalary.Text + "')";
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Employee Data has been Successfully Uploaded");
                         con.Close();
@@ -154,6 +175,11 @@ namespace Payroll_Management_system
         }
 
         private void phone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void designation_TextChanged(object sender, EventArgs e)
         {
 
         }

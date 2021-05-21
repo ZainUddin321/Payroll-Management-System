@@ -16,7 +16,8 @@ namespace Payroll_Management_system
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(@"Data Source=ZAINUDDIN\SQLEXPRESS;Initial Catalog='Payroll Database';Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
         private void Deduction_Load(object sender, EventArgs e)
         {
 
@@ -35,13 +36,13 @@ namespace Payroll_Management_system
         private void Employeeid_TextChanged(object sender, EventArgs e)
         {
             con.Open();
-            string query = "Select * From EmployeeDetail where EmployeeID='" + Employeeid.Text + "'";
+            string query = "Select * From Employee where Eid='" + Employeeid.Text + "'";
             SqlCommand data = new SqlCommand(query, con);
             SqlDataReader read = data.ExecuteReader();
             while (read.Read())
             {
-                name.Text = read.GetValue(0).ToString();
-                department.Text = read.GetValue(5).ToString();
+                name.Text = read.GetValue(1).ToString();
+                department.Text = read.GetValue(7).ToString();
             }
             con.Close();
         }
@@ -51,6 +52,10 @@ namespace Payroll_Management_system
             if (Employeeid.Text == "")
             {
                 MessageBox.Show("Please enter Employee Id", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if(string.IsNullOrEmpty(name.Text) || string.IsNullOrEmpty(department.Text))
+            {
+                MessageBox.Show("There is no Employee of the given id.", "information", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (deductionamount.Text == "")
             {
@@ -63,7 +68,7 @@ namespace Payroll_Management_system
             else
             {
                 con.Open();
-                string query = "Update EmployeeDetail Set DeductionAmount='" + deductionamount.Text + "' , DeductionReason='" + deductionreason.Text + "' where EmployeeID='" + Employeeid.Text + "'";
+                string query = "insert into Deduction(Eid, dReason, dAmount) values('" + Employeeid.Text + "','" + deductionreason.Text + "','" + deductionamount.Text + "')";
                 SqlDataAdapter data = new SqlDataAdapter(query, con);
                 data.SelectCommand.ExecuteNonQuery();
                 con.Close();

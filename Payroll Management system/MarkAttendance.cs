@@ -17,7 +17,8 @@ namespace Payroll_Management_system
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(@"Data Source=ZAINUDDIN\SQLEXPRESS;Initial Catalog='Payroll Database';Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
         private void MarkAttendance_Load(object sender, EventArgs e)
         {
 
@@ -30,18 +31,22 @@ namespace Payroll_Management_system
             {
                 MessageBox.Show("Please enter employee id.");
             }
-            if((present.Checked==false)&&(absent.Checked==false))
+            else if(name.Text=="")
+            {
+                MessageBox.Show("There is no employee of the given id.");
+            }
+            else if((present.Checked==false)&&(absent.Checked==false))
             {
                 MessageBox.Show("Mark Absent or present.");
             }
-            if (Timemode.Text == "")
+            else if (Timemode.Text == "")
             {
                 MessageBox.Show("Please enter Timezone.");
             }
-            if (name.Text != ""&&Timemode.Text != ""&& (present.Checked == true) || (absent.Checked == true))
+            else
             {
                 con.Open();
-                string firstquery = "Select Name,Date From Attendance where Name='"+name.Text+"' and Date='"+date.Value+"'";
+                string firstquery = "Select aDate From Attendance where Eid='"+Employeeid.Text+"' and aDate='"+date.Value+"'";
                 SqlDataAdapter dadap = new SqlDataAdapter(firstquery, con);
                 DataTable dt = new DataTable();
                 dadap.Fill(dt);
@@ -75,7 +80,7 @@ namespace Payroll_Management_system
                         attendance = "Absent";
                     }
                     con.Open();
-                    string query = "Insert into Attendance (EmployeeID,Name,AbsentPresent,ArriveTime,Date) Values('" + Employeeid.Text + "','" + name.Text + "','" + attendance + "','" + arrtime + "','" + date.Value + "')";
+                    string query = "Insert into Attendance (EID,aMarkAttendance,aDate,aArriveTime) Values('" + Employeeid.Text + "','" + attendance + "','" + date.Value + "','" + arrtime + "')";
                     SqlDataAdapter data = new SqlDataAdapter(query, con);
                     data.SelectCommand.ExecuteNonQuery();
                     con.Close();
@@ -87,12 +92,12 @@ namespace Payroll_Management_system
         private void Employeeid_TextChanged(object sender, EventArgs e)
         {
             con.Open();
-            string query = "Select * From EmployeeDetail where EmployeeID='" + Employeeid.Text + "'";
+            string query = "Select * From Employee where Eid='" + Employeeid.Text + "'";
             SqlCommand data = new SqlCommand(query, con);
             SqlDataReader read = data.ExecuteReader();
             while (read.Read())
             {
-                name.Text = read.GetValue(0).ToString();
+                name.Text = read.GetValue(1).ToString();
             }
             con.Close();
         }

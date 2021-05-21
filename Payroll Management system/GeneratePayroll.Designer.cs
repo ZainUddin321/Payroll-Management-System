@@ -43,8 +43,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.generate = new System.Windows.Forms.Button();
-            this.adddetails = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.Total = new System.Windows.Forms.Label();
             this.DeductionReason = new System.Windows.Forms.RichTextBox();
@@ -97,7 +95,7 @@
             this.basicpay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.basicpay.Location = new System.Drawing.Point(442, 94);
             this.basicpay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.basicpay.MaxLength = 7;
+            this.basicpay.MaxLength = 12;
             this.basicpay.Name = "basicpay";
             this.basicpay.ReadOnly = true;
             this.basicpay.Size = new System.Drawing.Size(150, 22);
@@ -209,8 +207,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.generate);
-            this.panel1.Controls.Add(this.adddetails);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.DeductionReason);
             this.panel1.Controls.Add(this.label14);
@@ -236,39 +232,16 @@
             this.panel1.TabIndex = 33;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // generate
-            // 
-            this.generate.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.generate.Location = new System.Drawing.Point(71, 239);
-            this.generate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.generate.Name = "generate";
-            this.generate.Size = new System.Drawing.Size(139, 40);
-            this.generate.TabIndex = 65;
-            this.generate.Text = "GENERATE";
-            this.generate.UseVisualStyleBackColor = true;
-            this.generate.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // adddetails
-            // 
-            this.adddetails.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adddetails.Location = new System.Drawing.Point(348, 79);
-            this.adddetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.adddetails.Name = "adddetails";
-            this.adddetails.Size = new System.Drawing.Size(234, 40);
-            this.adddetails.TabIndex = 64;
-            this.adddetails.Text = "CALCULATE DEDUCTION";
-            this.adddetails.UseVisualStyleBackColor = true;
-            this.adddetails.Click += new System.EventHandler(this.adddetails_Click);
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(101)))), ((int)(((byte)(198)))), ((int)(((byte)(187)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.Total);
-            this.panel3.Location = new System.Drawing.Point(307, 248);
+            this.panel3.Location = new System.Drawing.Point(223, 246);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 31);
             this.panel3.TabIndex = 50;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // Total
             // 
@@ -283,18 +256,19 @@
             // 
             // DeductionReason
             // 
-            this.DeductionReason.Location = new System.Drawing.Point(480, 168);
+            this.DeductionReason.Location = new System.Drawing.Point(476, 128);
             this.DeductionReason.Name = "DeductionReason";
             this.DeductionReason.Size = new System.Drawing.Size(150, 60);
             this.DeductionReason.TabIndex = 49;
             this.DeductionReason.Text = "";
+            this.DeductionReason.TextChanged += new System.EventHandler(this.DeductionReason_TextChanged_1);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(316, 168);
+            this.label14.Location = new System.Drawing.Point(312, 128);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(158, 21);
             this.label14.TabIndex = 48;
@@ -304,10 +278,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(216, 253);
+            this.label12.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(124, 246);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 21);
+            this.label12.Size = new System.Drawing.Size(93, 28);
             this.label12.TabIndex = 46;
             this.label12.Text = "Net Salary:";
             // 
@@ -327,13 +301,14 @@
             // 
             this.DeductionAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DeductionAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeductionAmount.Location = new System.Drawing.Point(435, 127);
+            this.DeductionAmount.Location = new System.Drawing.Point(431, 87);
             this.DeductionAmount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DeductionAmount.MaxLength = 7;
             this.DeductionAmount.Name = "DeductionAmount";
             this.DeductionAmount.ReadOnly = true;
             this.DeductionAmount.Size = new System.Drawing.Size(150, 22);
             this.DeductionAmount.TabIndex = 39;
+            this.DeductionAmount.Text = "0";
             this.DeductionAmount.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // label15
@@ -341,7 +316,7 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(316, 128);
+            this.label15.Location = new System.Drawing.Point(312, 88);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(97, 21);
             this.label15.TabIndex = 38;
@@ -422,11 +397,11 @@
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("EA Font v1.5 by Ghettoshark", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(155)))));
             this.label16.Location = new System.Drawing.Point(3, 11);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(375, 44);
+            this.label16.Size = new System.Drawing.Size(319, 46);
             this.label16.TabIndex = 34;
             this.label16.Text = "Generate Payroll";
             // 
@@ -523,7 +498,5 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button adddetails;
-        private System.Windows.Forms.Button generate;
     }
 }

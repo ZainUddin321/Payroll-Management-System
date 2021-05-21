@@ -33,14 +33,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.fathername = new System.Windows.Forms.TextBox();
-            this.employeeid = new System.Windows.Forms.TextBox();
             this.male = new System.Windows.Forms.RadioButton();
             this.female = new System.Windows.Forms.RadioButton();
             this.phone = new System.Windows.Forms.TextBox();
@@ -53,6 +51,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.Close = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.designation = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Image)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -61,11 +61,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("EA Font v1.5 by Ghettoshark", 30F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(83)))), ((int)(((byte)(155)))));
             this.label1.Location = new System.Drawing.Point(3, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(288, 44);
+            this.label1.Size = new System.Drawing.Size(280, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Add Employee";
             // 
@@ -92,18 +92,6 @@
             this.name.TabIndex = 6;
             this.name.TextChanged += new System.EventHandler(this.name_TextChanged);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(21, 171);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 19);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Employee ID:";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -122,7 +110,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(21, 206);
+            this.label5.Location = new System.Drawing.Point(21, 169);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 19);
             this.label5.TabIndex = 9;
@@ -134,7 +122,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(23, 243);
+            this.label6.Location = new System.Drawing.Point(23, 206);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 19);
             this.label6.TabIndex = 10;
@@ -176,22 +164,12 @@
             this.fathername.Size = new System.Drawing.Size(185, 23);
             this.fathername.TabIndex = 13;
             // 
-            // employeeid
-            // 
-            this.employeeid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.employeeid.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employeeid.Location = new System.Drawing.Point(142, 170);
-            this.employeeid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.employeeid.Name = "employeeid";
-            this.employeeid.Size = new System.Drawing.Size(70, 23);
-            this.employeeid.TabIndex = 14;
-            // 
             // male
             // 
             this.male.AutoSize = true;
             this.male.BackColor = System.Drawing.Color.Transparent;
             this.male.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.male.Location = new System.Drawing.Point(105, 208);
+            this.male.Location = new System.Drawing.Point(105, 171);
             this.male.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.male.Name = "male";
             this.male.Size = new System.Drawing.Size(54, 20);
@@ -206,7 +184,7 @@
             this.female.AutoSize = true;
             this.female.BackColor = System.Drawing.Color.Transparent;
             this.female.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.female.Location = new System.Drawing.Point(165, 208);
+            this.female.Location = new System.Drawing.Point(165, 171);
             this.female.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.female.Name = "female";
             this.female.Size = new System.Drawing.Size(65, 20);
@@ -220,7 +198,7 @@
             // 
             this.phone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.phone.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phone.Location = new System.Drawing.Point(109, 242);
+            this.phone.Location = new System.Drawing.Point(109, 205);
             this.phone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.phone.MaxLength = 11;
             this.phone.Name = "phone";
@@ -326,12 +304,37 @@
             this.imageList2.Images.SetKeyName(0, "close.png");
             this.imageList2.Images.SetKeyName(1, "minimize+minus+remove+sign+icon-1320085940403912850.png");
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(23, 245);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 19);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Designation:";
+            // 
+            // designation
+            // 
+            this.designation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.designation.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.designation.Location = new System.Drawing.Point(131, 243);
+            this.designation.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.designation.Name = "designation";
+            this.designation.Size = new System.Drawing.Size(185, 23);
+            this.designation.TabIndex = 38;
+            this.designation.TextChanged += new System.EventHandler(this.designation_TextChanged);
+            // 
             // Secondpage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.BackgroundImage = global::Payroll_Management_system.Properties.Resources.gradientBackground1;
+            this.Controls.Add(this.designation);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Upload);
             this.Controls.Add(this.Image);
@@ -341,14 +344,12 @@
             this.Controls.Add(this.phone);
             this.Controls.Add(this.female);
             this.Controls.Add(this.male);
-            this.Controls.Add(this.employeeid);
             this.Controls.Add(this.fathername);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.name);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -369,14 +370,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox name;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox fathername;
-        private System.Windows.Forms.TextBox employeeid;
         private System.Windows.Forms.RadioButton male;
         private System.Windows.Forms.RadioButton female;
         private System.Windows.Forms.TextBox phone;
@@ -389,5 +388,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox designation;
     }
 }

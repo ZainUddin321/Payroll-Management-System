@@ -20,7 +20,8 @@ namespace Payroll_Management_system
         private void button1_Click(object sender, EventArgs e)
         {
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(@"Data Source=ZAINUDDIN\SQLEXPRESS;Initial Catalog='Payroll Database';Integrated Security=True");
+        //SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
         private void adddetails_Click(object sender, EventArgs e)
         {
         }
@@ -56,7 +57,7 @@ namespace Payroll_Management_system
         private void employeeid_TextChanged_1(object sender, EventArgs e)
         {
             con.Open();
-            string query = "Select Name,Date,AbsentPresent,ArriveTime from Attendance where EmployeeID='" + employeeid.Text+"'";
+            string query = "Select aDate,aMarkAttendance,aArriveTime from Attendance where Eid='" + employeeid.Text+"'";
             SqlDataAdapter data = new SqlDataAdapter(query,con);
             DataTable dt = new DataTable();
             data.Fill(dt);
@@ -71,7 +72,7 @@ namespace Payroll_Management_system
         public void detaildisplayer()
         {
             con.Open();
-            string query = "Select Name,Date,AbsentPresent,ArriveTime from Attendance where EmployeeID='" + employeeid.Text + "'";
+            string query = "Select aDate,aMarkAttendance,aArriveTime from Attendance where Eid='" + employeeid.Text + "'";
             SqlDataAdapter data = new SqlDataAdapter(query, con);
             DataTable dtable = new DataTable();
             data.Fill(dtable);
