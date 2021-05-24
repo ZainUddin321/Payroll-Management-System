@@ -72,8 +72,7 @@ namespace Payroll_Management_system
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
         }
-        SqlConnection con = new SqlConnection(@"Data Source=ZAINUDDIN\SQLEXPRESS;Initial Catalog='Payroll Database';Integrated Security=True");
-        //SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(Connection.connectionString);
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             double CA, MA, HR, GrossPay, Inc_Tax;

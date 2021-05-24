@@ -63,12 +63,10 @@
             this.Options.FormattingEnabled = true;
             this.Options.Items.AddRange(new object[] {
             "Name",
-            "Fathername",
-            "EmployeeID",
-            "Gender",
-            "Phone",
-            "Department",
-            "Basicsalary"});
+            "Salary",
+            "Phone#",
+            "Designation",
+            "Department"});
             this.Options.Location = new System.Drawing.Point(132, 89);
             this.Options.MaxDropDownItems = 15;
             this.Options.Name = "Options";

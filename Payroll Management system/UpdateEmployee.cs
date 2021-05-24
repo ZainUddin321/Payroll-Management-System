@@ -16,13 +16,13 @@ namespace Payroll_Management_system
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(Connection.connectionString);
         private void Update_Click(object sender, EventArgs e)
         {
             if (Options.SelectedItem.ToString() == "Name")
             {
                 con.Open();
-                string query = "Update EmployeeDetail SET Name='"+value.Text+"' where EmployeeID='" + employeeid.Text + "'";
+                string query = "Update Employee SET eName='"+value.Text+"' where Eid='" + employeeid.Text + "'";
                 SqlCommand data = new SqlCommand(query, con);
                 data.ExecuteNonQuery();
                 con.Close();
@@ -32,10 +32,10 @@ namespace Payroll_Management_system
                 Options.Text = "";
                 value.Text = "";
             }
-            else if (Options.SelectedItem.ToString() == "Fathername")
+            else if (Options.SelectedItem.ToString() == "Salary")
             {
                 con.Open();
-                string query = "Update EmployeeDetail SET Fathername='" + value.Text + "' where EmployeeID='" + employeeid.Text + "'";
+                string query = "Update Salary SET sBasicSalary='" + value.Text + "' where Eid='" + employeeid.Text + "'";
                 SqlCommand data = new SqlCommand(query, con);
                 data.ExecuteNonQuery();
                 con.Close();
@@ -45,10 +45,10 @@ namespace Payroll_Management_system
                 Options.Text = "";
                 value.Text = "";
             }
-            else if (Options.SelectedItem.ToString() == "EmployeeID")
+            else if (Options.SelectedItem.ToString() == "Phone#")
             {
                 con.Open();
-                string query = "Update EmployeeDetail SET EmployeeID='" + value.Text + "' where EmployeeID='" + employeeid.Text + "'";
+                string query = "Update Employee SET ePhone='" + value.Text + "' where Eid='" + employeeid.Text + "'";
                 SqlCommand data = new SqlCommand(query, con);
                 data.ExecuteNonQuery();
                 con.Close();
@@ -58,23 +58,10 @@ namespace Payroll_Management_system
                 Options.Text = "";
                 value.Text = "";
             }
-            else if (Options.SelectedItem.ToString() == "Gender")
+            else if (Options.SelectedItem.ToString() == "Designation")
             {
                 con.Open();
-                string query = "Update EmployeeDetail SET Gender='" + value.Text + "' where EmployeeID='" + employeeid.Text + "'";
-                SqlCommand data = new SqlCommand(query, con);
-                data.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Data has been succesfully Updated", "Operation Succesfull", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Hide();
-                employeeid.Text = "";
-                Options.Text = "";
-                value.Text = "";
-            }
-            else if (Options.SelectedItem.ToString() == "Phone")
-            {
-                con.Open();
-                string query = "Update EmployeeDetail SET Phone='" + value.Text + "' where EmployeeID='" + employeeid.Text + "'";
+                string query = "Update Employee SET eDesignation='" + value.Text + "' where Eid='" + employeeid.Text + "'";
                 SqlCommand data = new SqlCommand(query, con);
                 data.ExecuteNonQuery();
                 con.Close();
@@ -87,20 +74,7 @@ namespace Payroll_Management_system
             else if (Options.SelectedItem.ToString() == "Department")
             {
                 con.Open();
-                string query = "Update EmployeeDetail SET Department='" + value.Text + "' where EmployeeID='" + employeeid.Text + "'";
-                SqlCommand data = new SqlCommand(query, con);
-                data.ExecuteNonQuery();
-                con.Close();
-                MessageBox.Show("Data has been succesfully Updated", "Operation Succesfull", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Hide();
-                employeeid.Text = "";
-                Options.Text = "";
-                value.Text = "";
-            }
-            else if (Options.SelectedItem.ToString() == "Basicsalary")
-            {
-                con.Open();
-                string query = "Update EmployeeDetail SET Basicsalary='" + value.Text + "' where EmployeeID='" + employeeid.Text + "'";
+                string query = "Update Employee SET eDepartment='" + value.Text + "' where Eid='" + employeeid.Text + "'";
                 SqlCommand data = new SqlCommand(query, con);
                 data.ExecuteNonQuery();
                 con.Close();
@@ -112,7 +86,7 @@ namespace Payroll_Management_system
             }
             else
             {
-                MessageBox.Show("Invalid Field chosen","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Please select any field.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 

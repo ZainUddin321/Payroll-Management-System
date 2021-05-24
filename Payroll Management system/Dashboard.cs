@@ -12,7 +12,7 @@ namespace Payroll_Management_system
 {
     public partial class Dashboard : UserControl
     {
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(Connection.connectionString);
         public Dashboard()
         {
             InitializeComponent();
@@ -34,7 +34,7 @@ namespace Payroll_Management_system
         private void Dashboard_Load(object sender, EventArgs e)
         {
             con.Open();
-            string query = "Select * from EmployeeDetail";
+            string query = "Select * from Employee";
             SqlDataAdapter cmd = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             cmd.Fill(dt);

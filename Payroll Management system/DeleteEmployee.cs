@@ -16,11 +16,11 @@ namespace Payroll_Management_system
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(Connection.connectionString);
         private void Delete_Click(object sender, EventArgs e)
         {
             con.Open();
-            string query = "Delete from EmployeeDetail Where EmployeeID='"+employeeid.Text+"'";
+            string query = "Delete from Employee Where Eid='"+employeeid.Text+"'";
             SqlCommand data = new SqlCommand(query,con);
             data.ExecuteNonQuery();
             con.Close();

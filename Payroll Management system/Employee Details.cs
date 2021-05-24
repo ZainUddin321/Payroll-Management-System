@@ -16,7 +16,7 @@ namespace Payroll_Management_system
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Users\zaing\OneDrive\Documents\PayrollDataBase.mdf;Integrated Security = True; Connect Timeout = 30");
+        SqlConnection con = new SqlConnection(Connection.connectionString);
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
@@ -28,7 +28,11 @@ namespace Payroll_Management_system
         public void detaildisplayer()
         {
             con.Open();
-            string query = "Select * from EmployeeDetail";
+            string query = "select distinct E.Eid as 'Emp ID#',E.eName as Name,S.sBasicSalary as Salary ,E.ePhone as 'Phone#',E.eDesignation as 'Designation',E.eDepartment as 'Department', (select sum(dAmount) from Deduction where Eid=E.Eid group by Eid ) as 'Deductions',(select Count(aMarkAttendance) from Attendance where aMarkAttendance='Present' and Eid=E.Eid group by Eid) as 'No. of Days Present',(select Count(aMarkAttendance) from Attendance where aMarkAttendance='Absent' and Eid=E.Eid group by Eid) as 'No. of Days Absent' from Employee as E"
+                            +" left join Salary as S on E.Eid = S.Eid"
+                            +" left join Deduction as D on E.Eid = D.Eid"
+                            +" left join Attendance as A on E.Eid = A.Eid"
+                            +" order by E.Eid";
             SqlDataAdapter data = new SqlDataAdapter(query, con);
             DataTable dtable = new DataTable();
             data.Fill(dtable);
@@ -41,7 +45,11 @@ namespace Payroll_Management_system
             if (search.Text == "")
             {
                 con.Open();
-                string query = "Select * from EmployeeDetail";
+                string query = "select distinct E.Eid as 'Emp ID#',E.eName as Name,S.sBasicSalary as Salary ,E.ePhone as 'Phone#',E.eDesignation as 'Designation',E.eDepartment as 'Department', (select sum(dAmount) from Deduction where Eid=E.Eid group by Eid ) as 'Deductions',(select Count(aMarkAttendance) from Attendance where aMarkAttendance='Present' and Eid=E.Eid group by Eid) as 'No. of Days Present',(select Count(aMarkAttendance) from Attendance where aMarkAttendance='Absent' and Eid=E.Eid group by Eid) as 'No. of Days Absent' from Employee as E"
+                + " left join Salary as S on E.Eid = S.Eid"
+                + " left join Deduction as D on E.Eid = D.Eid"
+                + " left join Attendance as A on E.Eid = A.Eid"
+                + " order by E.Eid";
                 SqlDataAdapter data = new SqlDataAdapter(query, con);
                 DataTable dtable = new DataTable();
                 data.Fill(dtable);
@@ -51,7 +59,13 @@ namespace Payroll_Management_system
             else
             {
                 con.Open();
-                string query = "Select * from EmployeeDetail where EmployeeID='" + search.Text + "'";
+                string query = "select distinct E.Eid as 'Emp ID#',E.eName as Name,S.sBasicSalary as Salary ,E.ePhone as 'Phone#',E.eDesignation as 'Designation',E.eDepartment as 'Department', (select sum(dAmount) from Deduction where Eid=E.Eid group by Eid ) as 'Deductions',(select Count(aMarkAttendance) from Attendance where aMarkAttendance='Present' and Eid=E.Eid group by Eid) as 'No. of Days Present',(select Count(aMarkAttendance) from Attendance where aMarkAttendance='Absent' and Eid=E.Eid group by Eid) as 'No. of Days Absent' from Employee as E"
+                + " left join Salary as S on E.Eid = S.Eid"
+                + " left join Deduction as D on E.Eid = D.Eid"
+                + " left join Attendance as A on E.Eid = A.Eid"
+                + " where E.Eid='"+search.Text+"'"
+                + " order by E.Eid";
+
                 SqlDataAdapter data = new SqlDataAdapter(query, con);
                 DataTable dtable = new DataTable();
                 data.Fill(dtable);
