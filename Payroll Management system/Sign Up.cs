@@ -69,46 +69,10 @@ namespace Payroll_Management_system
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    image.Image = Image.FromFile(@"F:\source\repos\Payroll Management system\Payroll Management system\Image\unnamed.png");
                 }
             }
             con.Close();
-            /*con.Open();
-            string query = "Select * From Employee where Eid='" + id.Text + "'";
-            SqlCommand data = new SqlCommand(query, con);
-            SqlDataReader read = data.ExecuteReader();
-
-            while (read.Read())
-            {
-                name.Text = read.GetValue(1).ToString();
-                fathername.Text = read.GetValue(2).ToString();
-                gender.Text = read.GetValue(3).ToString();
-                phone.Text = "+92-" + read.GetValue(4).ToString();
-                department.Text = read.GetValue(7).ToString();
-                try
-                {
-                    image.Image = Image.FromFile(@"F:\source\repos\Payroll Management system\Payroll Management system" + read.GetValue(7).ToString());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            con.Close();
-            con.Open();
-            query = "select sBasicSalary from Salary where Eid='" + id.Text + "'";
-            SqlDataAdapter adapt = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            adapt.Fill(dt);
-            basicpay.Text = dt.Rows[0]["sBasicSalary"].ToString();
-            query = "select dAmount,dReason from Deduction where Eid='" + id.Text + "'";
-            SqlDataAdapter adapt1 = new SqlDataAdapter(query, con);
-            DataTable dt1 = new DataTable();
-            adapt1.Fill(dt1);
-            deductionamount.Text = dt.Rows[0]["dAmount"].ToString();
-            deductionreason.Text = dt.Rows[0]["dReason"].ToString();
-            con.Close();
-            */
         }
 
         private void Information_Paint(object sender, PaintEventArgs e)

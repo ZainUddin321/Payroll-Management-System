@@ -256,6 +256,10 @@ namespace Payroll_Management_system
                         DeductionR = "";
                     }
                 }
+
+                DeductionAmount.Text = DeductionA.ToString();
+                DeductionReason.Text = DeductionR.ToString() + damount.ToString() + ".";
+
                 con.Close();
             }
             catch(Exception c)
